@@ -11,42 +11,99 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #eef2f3, #d9e2ec);
+            background: linear-gradient(135deg, #e0ecff, #f7f9fc);
             min-height: 100vh;
+            padding: 15px;
         }
-        .card {
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+        .main-card {
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            padding: 25px;
         }
+
+        h3 {
+            font-weight: 600;
+            font-size: clamp(20px, 3vw, 26px);
+        }
+
+        p {
+            font-size: clamp(13px, 2.5vw, 15px);
+        }
+
         textarea {
             resize: none;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 14px;
         }
-        .badge-real {
-            background-color: #198754;
+
+        textarea:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.15rem rgba(13,110,253,.25);
         }
-        .badge-fake {
-            background-color: #dc3545;
+
+        .btn-primary {
+            border-radius: 12px;
+            padding: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(13,110,253,0.3);
+        }
+
         .spinner-border {
             display: none;
+        }
+
+        .alert {
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        footer-text {
+            font-size: 12px;
+        }
+
+        /* Mobile specific tweaks */
+        @media (max-width: 576px) {
+            .main-card {
+                padding: 20px;
+            }
+
+            textarea {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-    <div class="col-md-8 col-lg-6">
-        <div class="card p-4">
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
-            <h3 class="text-center mb-3 fw-bold">
-                📰 Fake News Detection System
+        <div class="main-card">
+
+            <h3 class="text-center mb-2">
+                📰 Fake News Detection
             </h3>
 
             <p class="text-center text-muted mb-4">
-                Paste a news headline or article to check whether it is <b>Fake</b> or <b>Real</b>
+                Paste a news headline or article to check if it is <b>Real</b> or <b>Fake</b>
             </p>
 
             <form method="post" action="/predict" onsubmit="showLoader()">
@@ -78,15 +135,16 @@
 
             {% if prediction %}
             <div class="alert alert-{{ color }} text-center mt-4">
-                <h5 class="mb-0">{{ prediction }}</h5>
+                {{ prediction }}
             </div>
             {% endif %}
 
         </div>
 
-        <p class="text-center text-muted mt-3" style="font-size: 13px;">
-            ⚠️ This system uses Machine Learning and may not be 100% accurate.
+        <p class="text-center text-muted mt-3" style="font-size: 12px;">
+            ⚠️ ML-based prediction — results may not be 100% accurate
         </p>
+
     </div>
 </div>
 
