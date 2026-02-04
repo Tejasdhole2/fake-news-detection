@@ -79,14 +79,50 @@
         }
 
         /* Mobile specific tweaks */
-        @media (max-width: 576px) {
-            .main-card {
-                padding: 20px;
-            }
+        /* 🔥 MOBILE UI IMPROVEMENTS */
+     @media (max-width: 576px) {
 
-            textarea {
-                font-size: 13px;
-            }
+    body {
+        padding: 10px;
+        background: linear-gradient(180deg, #e6f0ff, #ffffff);
+    }
+
+    .container {
+        align-items: flex-start !important;
+        padding-top: 40px;
+    }
+
+    .main-card {
+        width: 100%;
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    textarea {
+        min-height: 140px;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 14px;
+    }
+
+    .alert {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
         }
     </style>
 </head>
@@ -117,7 +153,6 @@
                     required
                     oninput="countChars()"
                 ></textarea>
-
                 <small class="text-muted d-flex justify-content-end mt-1">
                     <span id="charCount">0</span> characters
                 </small>
